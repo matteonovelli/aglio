@@ -9,7 +9,7 @@ html
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
         style!= self.css
     body.preload
-        a(style="float: right" href="http://pruebas.openfinance.es/openmobile/crm") Volver Atrás
+        a(style="float: right" href=self.backUrl) Volver Atrás
         a.text-muted.back-to-top(href='#top')
             i.fa.fa-toggle-up
             | &nbsp;Back to top

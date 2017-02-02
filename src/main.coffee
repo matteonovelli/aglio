@@ -474,7 +474,9 @@ exports.getConfig = ->
     {name: 'style',
     description: 'Layout style name or path to custom stylesheet'},
     {name: 'emoji', description: 'Enable support for emoticons',
-    boolean: true, default: true}
+    boolean: true, default: true},
+    {name: 'back-url', description: 'URL for back button',
+    default: 'http://localhost'}
   ]
 
 # Render the blueprint with the given options using Jade and LESS
@@ -489,6 +491,7 @@ exports.render = (input, options, done) ->
   # This is purely for backward-compatibility
   if options.condenseNav then options.themeCondenseNav = options.condenseNav
   if options.fullWidth then options.themeFullWidth = options.fullWidth
+  if options.backUrl then options.themeBackUrl = options.backUrl
 
   # Setup defaults
   options.themeVariables ?= 'default'
@@ -496,6 +499,7 @@ exports.render = (input, options, done) ->
   options.themeTemplate ?= 'default'
   options.themeCondenseNav ?= true
   options.themeFullWidth ?= false
+  options.themeBackUrl ?= 'http://localhost'
 
   # Transform built-in layout names to paths
   if options.themeTemplate is 'default'
@@ -538,6 +542,7 @@ exports.render = (input, options, done) ->
 
     locals =
       api: input
+      backUrl: options.themeBackUrl
       condenseNav: options.themeCondenseNav
       css: css
       fullWidth: options.themeFullWidth
